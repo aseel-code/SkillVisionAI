@@ -1,0 +1,276 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Arabic and modern fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  font-family: 'Inter', 'Noto Sans Arabic', system-ui, sans-serif;
+  
+  /* Saudi Vision 2030 Color Variables */
+  --color-vision-primary: #22c55e;
+  --color-vision-secondary: #16a34a;
+  --color-desert-gold: #f7b955;
+  --color-heritage-blue: #0ea5e9;
+  --color-neutral-warm: #78716c;
+  
+  /* Typography Scale */
+  --font-size-hero: clamp(2.5rem, 5vw, 4rem);
+  --font-size-display: clamp(2rem, 4vw, 3rem);
+  --font-size-heading: clamp(1.5rem, 3vw, 2rem);
+  
+  /* Spacing Scale */
+  --spacing-section: clamp(4rem, 8vw, 8rem);
+  --spacing-component: clamp(2rem, 4vw, 4rem);
+  
+  /* Border Radius Scale */
+  --radius-card: 1.5rem;
+  --radius-button: 0.75rem;
+  --radius-input: 0.5rem;
+}
+
+/* Base Layer Customizations */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply text-neutral-800 bg-gradient-to-br from-vision-50 to-vision-100;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  }
+
+  /* Arabic text support */
+  [dir="rtl"] {
+    text-align: right;
+    font-family: 'Noto Sans Arabic', 'Inter', system-ui, sans-serif;
+  }
+
+  /* Heading styles with Saudi-inspired aesthetics */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold text-neutral-900;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: var(--font-size-hero);
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: var(--font-size-display);
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: var(--font-size-heading);
+    line-height: 1.3;
+  }
+
+  /* Paragraph styles */
+  p {
+    @apply text-neutral-600 leading-relaxed;
+  }
+
+  /* Focus styles with Vision 2030 green */
+  *:focus {
+    @apply outline-none ring-2 ring-vision-500 ring-offset-2 ring-offset-white;
+  }
+
+  /* Selection styles */
+  ::selection {
+    @apply bg-vision-200 text-vision-900;
+  }
+}
+
+/* Component Layer */
+@layer components {
+  /* Button Components with Saudi aesthetics */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-vision-gradient text-white font-medium rounded-xl;
+    @apply hover:shadow-vision transform hover:scale-105 active:scale-95;
+    @apply transition-all duration-200 ease-out;
+    @apply focus:ring-2 focus:ring-vision-500 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-white text-vision-700 font-medium rounded-xl;
+    @apply border border-vision-200 hover:border-vision-300 hover:bg-vision-50;
+    @apply transition-all duration-200 ease-out;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-4 py-2 text-vision-600 font-medium rounded-lg;
+    @apply hover:bg-vision-100 hover:text-vision-700;
+    @apply transition-all duration-200 ease-out;
+  }
+
+  /* Card Components */
+  .card {
+    @apply bg-card-gradient backdrop-blur-lg rounded-2xl border border-white/20;
+    @apply shadow-lg hover:shadow-vision transition-all duration-300;
+  }
+
+  .card-elevated {
+    @apply card shadow-heritage hover:shadow-glow;
+    @apply transform hover:-translate-y-1;
+  }
+
+  /* Navigation Components */
+  .nav-glass {
+    @apply bg-white/80 backdrop-blur-lg border-b border-white/20;
+    @apply supports-[backdrop-filter]:bg-white/60;
+  }
+
+  /* Badge Components */
+  .badge-vision {
+    @apply inline-flex items-center px-3 py-1 bg-vision-100 text-vision-800 text-sm font-medium rounded-full;
+  }
+
+  .badge-desert {
+    @apply inline-flex items-center px-3 py-1 bg-desert-100 text-desert-800 text-sm font-medium rounded-full;
+  }
+
+  /* Input Components */
+  .input-field {
+    @apply w-full px-4 py-3 bg-white border border-neutral-200 rounded-xl;
+    @apply focus:border-vision-500 focus:ring-2 focus:ring-vision-500/20;
+    @apply placeholder-neutral-400 transition-all duration-200;
+  }
+
+  /* Typography Components */
+  .text-hero {
+    @apply text-4xl md:text-6xl font-display font-bold text-neutral-900;
+    font-size: var(--font-size-hero);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .text-display {
+    @apply text-3xl md:text-5xl font-display font-semibold text-neutral-900;
+    font-size: var(--font-size-display);
+    line-height: 1.2;
+  }
+
+  .text-gradient-vision {
+    @apply bg-gradient-to-r from-vision-600 to-vision-500 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-desert {
+    @apply bg-gradient-to-r from-desert-500 to-desert-400 bg-clip-text text-transparent;
+  }
+
+  /* Layout Components */
+  .section-padding {
+    padding-top: var(--spacing-section);
+    padding-bottom: var(--spacing-section);
+  }
+
+  .container-responsive {
+    @apply max-w-7xl mx-auto px-6;
+  }
+
+  /* Animation Classes */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .animate-glow-pulse {
+    animation: glowPulse 2s ease-in-out infinite alternate;
+  }
+}
+
+/* Utility Layer */
+@layer utilities {
+  /* Backdrop Blur Utilities */
+  .backdrop-blur-glass {
+    @apply backdrop-blur-lg supports-[backdrop-filter]:bg-white/60;
+  }
+
+  /* Gradient Utilities */
+  .bg-hero-pattern {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 25%, #bbf7d0 50%, #86efac 75%, #4ade80 100%);
+  }
+
+  .bg-vision-mesh {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(22, 163, 74, 0.08) 0%, transparent 50%);
+  }
+
+  /* Text Shadow Utilities */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-vision {
+    text-shadow: 0 2px 4px rgba(34, 197, 94, 0.2);
+  }
+
+  /* Custom Scrollbar */
+  .scrollbar-vision {
+    scrollbar-width: thin;
+    scrollbar-color: #22c55e #f0fdf4;
+  }
+
+  .scrollbar-vision::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-vision::-webkit-scrollbar-track {
+    @apply bg-vision-50;
+  }
+
+  .scrollbar-vision::-webkit-scrollbar-thumb {
+    @apply bg-vision-400 rounded-full;
+  }
+
+  .scrollbar-vision::-webkit-scrollbar-thumb:hover {
+    @apply bg-vision-500;
+  }
+
+  /* Direction utilities for Arabic support */
+  .rtl {
+    direction: rtl;
+  }
+
+  .ltr {
+    direction: ltr;
+  }
+}
+
+/* Dark mode support (optional future enhancement) */
+@media (prefers-color-scheme: dark) {
+  .dark-mode {
+    /* Future dark mode implementation */
+  }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode accessibility */
+@media (prefers-contrast: high) {
+  .card {
+    @apply border-2 border-neutral-400;
+  }
+  
+  .btn-primary {
+    @apply ring-2 ring-neutral-900;
+  }
+}
